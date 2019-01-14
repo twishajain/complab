@@ -10,15 +10,13 @@ code segment
         mov cx,5
         lea si,array1
         lea di,array2
-        add si,9
-        add di,5
+        add si,8
+        add di,4
         back:
-        mov al,[si]
-        mov [di],al
+        mov ax,[si]
+        mov [di],ax
         dec si
         dec di
-        mov al,[si]
-        mov [di],al
         dec si
         dec di
         loop back
