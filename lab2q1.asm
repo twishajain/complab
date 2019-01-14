@@ -26,7 +26,9 @@ code segment
                 inc si
                 inc di
                 mov al,[si]
-                mov [di],al      
+                mov [di],al   
+                mov ah,4ch
+                int 21h
          code ends
          end start
 
