@@ -26,9 +26,7 @@ code segment
                 inc si
                 inc di
                 mov al,[si]
-                mov [di],al
-                inc si
-                inc di
+                mov [di],al      
          code ends
          end start
 
