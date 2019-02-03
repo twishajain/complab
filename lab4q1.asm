@@ -12,10 +12,10 @@ start:
         mov bx,B
         mul BX
         lea si,res
-        mov word ptr [si],dx
-        inc si
-        inc si
         mov word ptr [si],ax
+        inc si
+        inc si
+        mov word ptr [si],dx
         mov ah,4ch
         int 21h
         code ends
