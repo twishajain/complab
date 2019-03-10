@@ -8,7 +8,7 @@ START:
 		MOV DS,AX
 	
 		MOV SI,0
-BACK2:          MOV CL,A
+BACK2:          MOV CL,10
                 MOV ch,00H
 		DEC CX
 		MOV BX,CX
