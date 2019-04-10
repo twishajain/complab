@@ -1,34 +1,33 @@
-DATA SEGMENT
-        A DB 10 DUP(?)
+`DATA SEGMENT
+    A DB 11H,9H,10H,19H,12H
 DATA ENDS
-CODE SEGMENT
-	ASSUME CS:CODE,DS:DATA
+
+CODE SEGMENT 
+    ASSUME CS:CODE,DS:DATA
 START:
-		MOV AX,DATA
-		MOV DS,AX
-	
-		MOV SI,0
-BACK2:          MOV CL,10
-                MOV ch,00H
-		DEC CX
-		MOV BX,CX
-                SUB CX,SI
+    MOV AX,DATA
+    MOV DS,AX
 
-		MOV DI,0
-BACK:           MOV AL,A[DI]
-		CMP AL,A[DI+1]
-		JC SKIP
-		XCHG AL,A[DI+1]
-		MOV A[DI],AL
-SKIP:           INC DI 
-		LOOP BACK
-		
-		INC SI
-		CMP SI,BX
-		JC BACK2
+    MOV DX,4
 
-		MOV AH,4CH
-		INT 21H
-		
+    OUTER:
+        LEA SI,A
+        MOV CX,DX
+
+        INNER:
+            MOV AL,BYTE PTR[SI]
+            CMP AL,BYTE PTR[SI+1]
+            JC CONTINUE
+            XCHG AL,BYTE PTR[SI+1]
+            MOV BYTE PTR[SI],AL
+
+            CONTINUE:
+                INC SI
+                LOOP INNER
+        DEC DX
+        JNZ OUTER 
+
+        MOV AH,4CH
+        INT 21H
 CODE ENDS
 END START
